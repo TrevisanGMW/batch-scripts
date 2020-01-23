@@ -1,0 +1,1 @@
+attrib *.ico  +s +h 
