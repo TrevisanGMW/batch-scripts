@@ -4,12 +4,6 @@ REM 1.1 - 2021/08/16
 REM Changed the date and compName string format: YYYY/MM/DD - TIME (COMPNAME)
 REM Updated file name to gitAutoPush
 
-:GET AUTO PUSH ARGUMENT - For auto push, provided "1", "true" or "True" as argument
-set IS_AUTOMATIC="%1"
-if %IS_AUTOMATIC%=="1" goto NOFEEDBACK
-if %IS_AUTOMATIC%=="true" goto NOFEEDBACK
-if %IS_AUTOMATIC%=="True" goto NOFEEDBACK
-
 :GET CURR DIR
 for %%I in (.) do set currDirName=%%~nxI
 
@@ -24,6 +18,11 @@ FOR /F "usebackq" %%i IN (`hostname`) DO SET compName=%%i
 
 set message=Updated %date% - %time% (%compName%)
 
+:GET AUTO PUSH ARGUMENT - For auto push, provided "1", "true" or "True" as argument
+set IS_AUTOMATIC="%1"
+if %IS_AUTOMATIC%=="1" goto NOFEEDBACK
+if %IS_AUTOMATIC%=="true" goto NOFEEDBACK
+if %IS_AUTOMATIC%=="True" goto NOFEEDBACK
 
 :MENU
 @echo. 
@@ -59,8 +58,9 @@ git pull
 GOTO MENU
 
 :NOFEEDBACK
-echo "got here"
-pause
+git add -A
+git commit -m "%message%"
+git push
 
 :EOF
 exit
