@@ -4,10 +4,16 @@ REM 1.1 - 2021/08/16
 REM Changed the date and compName string format: YYYY/MM/DD - TIME (COMPNAME)
 REM Updated file name to gitAutoPush
 
-:GETCURRDIR
+:GET AUTO PUSH ARGUMENT - For auto push, provided "1", "true" or "True" as argument
+set IS_AUTOMATIC="%1"
+if %IS_AUTOMATIC%=="1" goto NOFEEDBACK
+if %IS_AUTOMATIC%=="true" goto NOFEEDBACK
+if %IS_AUTOMATIC%=="True" goto NOFEEDBACK
+
+:GET CURR DIR
 for %%I in (.) do set currDirName=%%~nxI
 
-@title =  %currDirName% - gitAutoPush v1.0.1
+@title =  %currDirName% - gitAutoPush v1.0.2
 git status
 
 :GETTIME
@@ -51,6 +57,10 @@ GOTO MENU
 cls
 git pull
 GOTO MENU
+
+:NOFEEDBACK
+echo "got here"
+pause
 
 :EOF
 exit
