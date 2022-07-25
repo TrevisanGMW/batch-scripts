@@ -7,22 +7,17 @@ REM Updated file name to gitAutoPush
 :GETCURRDIR
 for %%I in (.) do set currDirName=%%~nxI
 
-@title =  %currDirName% - gitAutoPush V1.1
+@title =  %currDirName% - gitAutoPush v1.0.1
 git status
 
 :GETTIME
 FOR /F "TOKENS=1 eol=/ DELIMS=/ " %%A IN ('TIME/T') DO SET time=%%A
 
-:GETDATE
-set year=%date:~10,4%
-set month=%date:~4,2%
-set day=%date:~7,2%
-SET todaysdate=%yyyy%
-
 :GETCOMPNAME
 FOR /F "usebackq" %%i IN (`hostname`) DO SET compName=%%i
 
-set message=Updated %year%/%month%/%day% - %time% (%compName%)
+set message=Updated %date% - %time% (%compName%)
+
 
 :MENU
 @echo. 
