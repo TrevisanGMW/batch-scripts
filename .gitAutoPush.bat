@@ -38,7 +38,7 @@ REM @echo. ________________________________________________________________
 @echo. 
 @echo off
 
-SET /P M=Type 1,2,3,4 or 5 then press ENTER:
+SET /P M=Type 1,2, or 3 then press ENTER:
 IF %M%==1 GOTO PUSH
 IF %M%==2 GOTO PULL
 IF %M%==3 GOTO EOF
